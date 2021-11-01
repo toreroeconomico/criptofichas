@@ -177,7 +177,10 @@ def escribeInicioFichaLaTeX(datos,tema,fLaTeX):
     fLaTeX.write(r"\vspace{0.5\baselineskip}"+"\n")    
     fLaTeX.write(r"\begin{center}"+"\n")
     fLaTeX.write(r"	 \begin{tcolorbox}[spartan,height=1cm,valign=center,sharp corners,shadow={0mm}{0mm}{0mm}{white},boxrule=0mm,coltitle=black,colframe=black,colback=lightgray,width=(\textwidth),nobeforeafter]"+"\n")
-    fLaTeX.write(r"	     \centering\huge\textbf{" + datos["Título"] + r"}"+"\n")
+    if len(datos["Título"]) >= 39:
+        fLaTeX.write(r"	     \centering\Large\textbf{" + datos["Título"] + r"}"+"\n")
+    else:
+        fLaTeX.write(r"	     \centering\huge\textbf{" + datos["Título"] + r"}"+"\n")
     fLaTeX.write(r"\end{tcolorbox}"+"\n")
     fLaTeX.write(r"\end{center}"+"\n")
     fLaTeX.write(r""+"\n")
