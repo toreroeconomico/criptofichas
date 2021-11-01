@@ -297,8 +297,7 @@ for koko in range(len(elementos)):
     fLaTeX.write(r"\renewcommand{\arraystretch}{1.0}"+"\n")
     fLaTeX.write(r"\noindent\begin{tabularx}{\textwidth}{|X|c|c|c|c|}"+"\n")
     fLaTeX.write(r"	\hline"+"\n")
-    fLaTeX.write(
-        r"	\textbf{Ecuación} & \textbf{Solución 1} & \textbf{Solución 2} & \textbf{Producto} & \textbf{Letra} \\"+"\n")
+    fLaTeX.write(r"	\textbf{Ecuación} & \textbf{Solución 1} & \textbf{Solución 2} & \textbf{Producto} & \textbf{Letra} \\"+"\n")
     fLaTeX.write(r"	\hline"+"\n")
     print(elementos[koko])
     for papa in range(len(elementos[koko])):
