@@ -1,0 +1,8 @@
+Centro,SESO del IES Dunas de las Chapas
+Nivel,3 ESO
+Asignatura,Matemáticas orientadas a las enseñanzas académicas
+CE,2.1 Utilizar las propiedades de los números racionales para operarlos, utilizando la forma de cálculo y notación adecuada, para resolver problemas de la vida cotidiana, y presentando los resultados con la precisión requerida.
+Est,2.1.2 Distingue, al hallar el decimal equivalente a una fracción, entre decimales finitos y decimales infinitos periódicos, indicando en este caso, el grupo de decimales que se repiten o forman período.
+Est,2.1.3 Halla la fracción generatriz correspondiente a un decimal exacto o periódico.
+Título,CRIPTOGRAFÍA CON GENERATRICES
+Archivo,criptografia_3ESO_Ac_Q_Generatrices

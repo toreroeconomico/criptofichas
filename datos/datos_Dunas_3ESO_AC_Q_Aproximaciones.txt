@@ -1,0 +1,9 @@
+Centro,IES Dunas de las Chapas
+Nivel,3 ESO
+Asignatura,Matemáticas orientadas a las enseñanzas académicas
+CE,1.11 Emplear las herramientas tecnológicas adecuadas, de forma autónoma, realizando cálculos numéricos, algebraicos o estadísticos, haciendo representaciones gráficas, recreando situaciones matemáticas mediante simulaciones o analizando con sentido crítico situaciones diversas que ayuden a la comprensión de conceptos matemáticos o a la resolución de problemas.
+CE,2.1 Utilizar las propiedades de los números racionales para operarlos, utilizando la forma de cálculo y notación adecuada, para resolver problemas de la vida cotidiana, y presentando los resultados con la precisión requerida.
+Est,1.11.1 Selecciona herramientas tecnológicas adecuadas y las utiliza para la realización de cálculos numéricos, algebraicos o estadísticos cuando la dificultad de los mismos impide o no aconseja hacerlos manualmente.
+Est,2.1.6 Distingue y emplea técnicas adecuadas para realizar aproximaciones por defecto y por exceso de un número en problemas contextualizados, justificando sus procedimientos.
+Título,CRIPTOGRAFÍA CON APROXIMACIONES EN Q
+Archivo,criptografia_3ESO_Ac_Q_Aproximaciones

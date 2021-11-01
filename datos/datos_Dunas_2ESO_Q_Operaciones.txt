@@ -1,0 +1,7 @@
+Centro,IES Dunas de las Chapas
+Nivel,2 ESO
+Asignatura,Matemáticas
+CE,2.1 Utilizar números naturales, enteros, fraccionarios, decimales y porcentajes sencillos, sus operaciones y propiedades para recoger, transformar e intercambiar información y resolver problemas relacionados con la vida diaria.
+Est,2.1.2 Calcula el valor de expresiones numéricas de distintos tipos de números mediante las operaciones elementales y las potencias de exponente natural aplicando correctamente la jerarquía de las operaciones.
+Título,CRIPTOGRAFÍA CON OPERACIONES EN Q
+Archivo,criptografia_2ESO_Q_Operaciones
