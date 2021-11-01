@@ -128,7 +128,7 @@ def leeDatosCabecera(argv):
 def creaArchivoLaTeX(datos,archivoElementos,directorioFichas):
     # Creamos el archivo LaTeX en el directorio para las fichas.
     nombreArchivoElementos = archivoElementos[archivoElementos.rfind('/')+1:-4] # Sin la ruta.
-    rutaArchivoLaTeX = directorioFichas + datos["Archivo"] + "_" + nombreArchivoElementos + ".tex"
+    rutaArchivoLaTeX = directorioFichas + datos["Centro"] + r"_" + datos["Archivo"] + r"_" + nombreArchivoElementos + ".tex"
     fLaTeX = open(rutaArchivoLaTeX, "w")
     return rutaArchivoLaTeX,fLaTeX
 
