@@ -53,7 +53,8 @@ def leeElementos(argv):
     
     elementos = []
     
-    with open(nombreArchivoTxtElementos) as fTxt:
+    #with open(nombreArchivoTxtElementos) as fTxt:
+    with open(nombreArchivoTxtElementos, 'r', errors='replace', encoding="utf8") as fTxt:
         # Leemos de golpe todas las líneas del archivo txt.
         lines = fTxt.readlines()
         tema = lines[0] # En la primera línea estará el tema, listo para escribirlo en la ficha.
@@ -81,7 +82,8 @@ def leeDatosCabecera(argv):
     Titulo = []
     Archivo = []
     
-    with open(nombreArchivoTxtCabecera) as fTXT:
+    #with open(nombreArchivoTxtCabecera) as fTXT:
+    with open(nombreArchivoTxtCabecera, 'r', errors='replace', encoding="utf8") as fTXT:
         # Leemos de golpe todas las líneas del archivo txt.
         lines = fTXT.readlines()
         # Vamos leyendo línea a línea.
