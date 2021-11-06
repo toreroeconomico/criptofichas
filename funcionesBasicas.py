@@ -131,7 +131,7 @@ def creaArchivoLaTeX(datos,archivoElementos,directorioFichas):
     # Creamos el archivo LaTeX en el directorio para las fichas.
     nombreArchivoElementos = archivoElementos[archivoElementos.rfind('/')+1:-4] # Sin la ruta.
     rutaArchivoLaTeX = directorioFichas + datos["Centro"] + r"_" + datos["Archivo"] + r"_" + nombreArchivoElementos + ".tex"
-    fLaTeX = open(rutaArchivoLaTeX, "w")
+    fLaTeX = open(rutaArchivoLaTeX, "w", encoding="utf8")
     return rutaArchivoLaTeX,fLaTeX
 
 #######################################################################################   
@@ -141,6 +141,8 @@ def escribePreambuloLaTeX(datos,fLaTeX):
     fLaTeX.write(r"\renewcommand{\familydefault}{\sfdefault}"+"\n")
     fLaTeX.write(r"\usepackage[scaled=1]{helvet}"+"\n")
     fLaTeX.write(r"\usepackage[helvet]{sfmath}"+"\n")
+    fLaTeX.write(r"\usepackage[spanish]{babel}"+"\n")
+    fLaTeX.write(r"\selectlanguage{spanish}"+"\n")
     fLaTeX.write(r"\usepackage[utf8]{inputenc}"+"\n")
     fLaTeX.write(r"\usepackage{amsmath}"+"\n")
     fLaTeX.write(r"\usepackage{enumitem}"+"\n")
