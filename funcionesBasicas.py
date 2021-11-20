@@ -6,23 +6,38 @@ Created on Sat Jun 19 16:59:22 2021
 @author: sergio
 """
 import random
+import math
 
+#######################################################################################
+def generaOperacionesDistintas(numeroTiposOperaciones,longitudElemento):
+    # Construimos una lista con cada posible tipo de operación.
+    tiposOperaciones = []
+    repeticiones = math.ceil(longitudElemento/numeroTiposOperaciones)
+    for kuup in range(repeticiones):
+        for kiop in range(numeroTiposOperaciones):
+            tiposOperaciones.append(kiop)
+    random.shuffle(tiposOperaciones)
+    # De esta forma, los tipos de operaciones estarán mejor repartidos.
+    return tiposOperaciones
 
 #######################################################################################
 def creaCodigoAlfabetico():
     codigoAlfabetico = {
         'A': -13,
         'Á': -13,
+        'Ä': -13,
         'B': -12,
         'C': -11,
         'D': -10,
         'E': -9,
         'É': -9,
+        'Ë': -9,
         'F': -8,
         'G': -7,
         'H': -6,
         'I': -5,
         'Í': -5,
+        'Ï': -5,
         'J': -4,
         'K': -3,
         'L': -2,
@@ -31,13 +46,15 @@ def creaCodigoAlfabetico():
         'Ñ': 1,
         'O': 2,
         'Ó': 2,
+        'Ö': 2, 
         'P': 3,
         'Q': 4,
         'R': 5,
         'S': 6,
         'T': 7,
         'U': 8,
-        'Ú': 8,        
+        'Ú': 8,
+        'Ü': 8,       
         'V': 9,
         'W': 10,
         'X': 11,
@@ -53,7 +70,6 @@ def leeElementos(argv):
     
     elementos = []
     
-    #with open(nombreArchivoTxtElementos) as fTxt:
     with open(nombreArchivoTxtElementos, 'r', errors='replace', encoding="utf8") as fTxt:
         # Leemos de golpe todas las líneas del archivo txt.
         lines = fTxt.readlines()
@@ -181,7 +197,9 @@ def escribeInicioFichaLaTeX(datos,tema,fLaTeX):
     fLaTeX.write(r"\vspace{0.5\baselineskip}"+"\n")    
     fLaTeX.write(r"\begin{center}"+"\n")
     fLaTeX.write(r"	 \begin{tcolorbox}[spartan,height=1cm,valign=center,sharp corners,shadow={0mm}{0mm}{0mm}{white},boxrule=0mm,coltitle=black,colframe=black,colback=lightgray,width=(\textwidth),nobeforeafter]"+"\n")
-    if len(datos["Título"]) >= 39:
+    if len(datos["Título"]) >= 60:
+        fLaTeX.write(r"	     \centering\large\textbf{" + datos["Título"] + r"}"+"\n")
+    elif len(datos["Título"]) >= 39:
         fLaTeX.write(r"	     \centering\Large\textbf{" + datos["Título"] + r"}"+"\n")
     else:
         fLaTeX.write(r"	     \centering\huge\textbf{" + datos["Título"] + r"}"+"\n")

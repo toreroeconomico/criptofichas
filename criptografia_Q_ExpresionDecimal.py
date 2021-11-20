@@ -87,7 +87,7 @@ for koko in range(len(elementos)):
     fLaTeX.write(r"	\textbf{Fracción} & \textbf{Resultado} & \textbf{Letra} \\"+"\n")
     fLaTeX.write(r"	\hline"+"\n")
     # Añadimos al archivo fuente LaTeX las operaciones para cada letra de este elemento.
-    print(elementos[koko])
+    print(str(koko+1), "de", str(len(elementos)),":", elementos[koko])
     for papa in range(len(elementos[koko])):
         # Obtenemos el número correspondiente a cada letra del primer elemento,
         # y generamos unas cuantas operaciones que dan ese número como resultado.

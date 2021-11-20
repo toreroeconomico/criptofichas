@@ -235,16 +235,15 @@ for koko in range(len(elementos)):
     fLaTeX.write(r"	\hline"+"\n")
 
     # Añadimos al archivo fuente LaTeX las operaciones con enteros para el elemento que toque.
-    print(elementos[koko])
-    
+    print(str(koko+1), "de", str(len(elementos)),":", elementos[koko])
+    operacionesDistintas = funcionesBasicas.generaOperacionesDistintas(numeroTiposOperaciones,len(elementos[koko]))
     for papa in range(len(elementos[koko])):
         # Obtenemos el número correspondiente a cada letra del primer elemento,
         # y generamos una operación que da ese número como resultado.
         if codigoAlfabetico.get(elementos[koko][papa]) is not None:
-            operacion = random.randrange(0, numeroTiposOperaciones)
             metodo = random.randrange(0, 3)
             orden = random.randrange(0, 6)
-            operacion = convierteLetraAOperacion(operacion,
+            textoOperacion = convierteLetraAOperacion(operacionesDistintas[papa],
                                              numeroOperacionesDistintas,
                                              codigoAlfabetico.get(elementos[koko][papa]),
                                              metodo,
@@ -268,7 +267,7 @@ for koko in range(len(elementos)):
                 orden = "dm"
             elif orden == 5:
                 orden = "cm"
-            fLaTeX.write(r" $" + operacion + r"$ & " + orden + r" & " + metodo + r" & & & \\\hline " + "\n")
+            fLaTeX.write(r" $" + textoOperacion + r"$ & " + orden + r" & " + metodo + r" & & & \\\hline " + "\n")
     fLaTeX.write(r"\end{tabularx}"+"\n")
     fLaTeX.write(r"\end{small}"+"\n")
     funcionesBasicas.escribeFinalFichaLaTeX(fLaTeX)

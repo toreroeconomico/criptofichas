@@ -39,13 +39,12 @@ funcionesBasicas.escribePreambuloLaTeX(datos,fLaTeX)
 # Parámetros
 #######################################################################################
 
-
 maximoPositivo = int(input("Introduce el máximo positivo: "))
-facil = int(input("¿Fácil (0) o difícil (1)?: "))
-if facil == 0:
-    numeroTiposOperaciones = 8
-else:
+facil = int(input("¿Fácil (1) o difícil (0)?: "))
+if facil == 1:
     numeroTiposOperaciones = 4
+else:
+    numeroTiposOperaciones = 8
 numeroOperacionesDistintas = 5
 minimoNegativo = -maximoPositivo
 
@@ -150,7 +149,9 @@ def generaOperacionesTipo6(exponenteSolucion, numeroOperaciones, maximoPositivo,
     listaOperaciones = []
     while contador < numeroOperaciones:
         factor1 = random.randrange(2,10)
-        factor2 = random.randrange(2,10)        
+        #factor2 = random.randrange(2,10)
+        posibilidadesFactor2 = [2*factor1-1,2*factor1+1,2*factor1+3] # Primos con factor1
+        factor2 = posibilidadesFactor2[random.randrange(0,len(posibilidadesFactor2))]
         exp1 = random.randrange(minimoNegativo, maximoPositivo)
         exp2 = random.randrange(minimoNegativo, maximoPositivo)
         exp3 = random.randrange(2, maximoPositivo)
@@ -167,7 +168,8 @@ def generaOperacionesTipo7(exponenteSolucion, numeroOperaciones, maximoPositivo,
     listaOperaciones = []
     while contador < numeroOperaciones:
         factor1 = random.randrange(2,10)
-        factor2 = random.randrange(2,10)        
+        posibilidadesFactor2 = [2*factor1-1,2*factor1+1,2*factor1+3] # Primos con factor1
+        factor2 = posibilidadesFactor2[random.randrange(0,len(posibilidadesFactor2))]
         exp1 = random.randrange(minimoNegativo, maximoPositivo)
         exp2 = random.randrange(minimoNegativo, maximoPositivo)
         exp3 = random.randrange(2, maximoPositivo)
@@ -185,7 +187,8 @@ def generaOperacionesTipo8(exponenteSolucion, numeroOperaciones, maximoPositivo,
     listaOperaciones = []
     while contador < numeroOperaciones:
         factor1 = random.randrange(2,10)
-        factor2 = random.randrange(2,10)        
+        posibilidadesFactor2 = [2*factor1-1,2*factor1+1,2*factor1+3] # Primos con factor1
+        factor2 = posibilidadesFactor2[random.randrange(0,len(posibilidadesFactor2))]
         exp1 = random.randrange(minimoNegativo, maximoPositivo)
         exp2 = random.randrange(minimoNegativo, maximoPositivo)
         exp3 = random.randrange(2, maximoPositivo)
@@ -231,14 +234,15 @@ for koko in range(len(elementos)):
     fLaTeX.write(r"	\textbf{Operación} & \textbf{Potencia única} & \textbf{Letra} \\"+"\n")
     fLaTeX.write(r"	\hline"+"\n")
     # Añadimos al archivo fuente LaTeX las operaciones para cada letra de este elemento.
-    print(elementos[koko])
+    print(str(koko+1), "de", str(len(elementos)),":", elementos[koko])
+    operacionesDistintas = funcionesBasicas.generaOperacionesDistintas(numeroTiposOperaciones,len(elementos[koko]))
     for papa in range(len(elementos[koko])):
         # Obtenemos el número correspondiente a cada letra del primer elemento,
         # y generamos unas cuantas operaciones que dan ese número como resultado.
         # De ellas nos quedamos con la primera. De esa forma, letras iguales tendrán
         # probablemente operaciones diferentes.
         if codigoAlfabetico.get(elementos[koko][papa]) is not None:
-            fLaTeX.write(r" $"+convierteLetraAOperacion(random.randrange(0,numeroTiposOperaciones),numeroOperacionesDistintas,codigoAlfabetico.get(elementos[koko][papa]),maximoPositivo, minimoNegativo)[0]+r"$ & & \\\hline"+"\n")
+            fLaTeX.write(r" $"+convierteLetraAOperacion(operacionesDistintas[papa],numeroOperacionesDistintas,codigoAlfabetico.get(elementos[koko][papa]),maximoPositivo, minimoNegativo)[0]+r"$ & & \\\hline"+"\n")
     fLaTeX.write(r"\end{tabularx}"+"\n")
     funcionesBasicas.escribeFinalFichaLaTeX(fLaTeX)
 fLaTeX.write(r"\end{document}"+"\n")
