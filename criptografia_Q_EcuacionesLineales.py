@@ -206,21 +206,6 @@ def generaOperacionesTipo6(solucion, numeroOperacionesDistintas, maximoPositivo)
                 contador = len(listaOperacionesUnicas)
     return listaOperacionesUnicas
 
-
-#def convierteLetraAOperacion(tipoOperacion, numeroOperacionesDistintas, solucion, maximoPositivo):
-#    if tipoOperacion == 0:
-#        return generaOperacionesTipo1(solucion, numeroOperacionesDistintas, maximoPositivo)
-#    elif tipoOperacion == 1:
-#        return generaOperacionesTipo2(solucion, numeroOperacionesDistintas, maximoPositivo)
-#    elif tipoOperacion == 2:
-#        return generaOperacionesTipo3(solucion, numeroOperacionesDistintas, maximoPositivo)
-#    elif tipoOperacion == 3:
-#        return generaOperacionesTipo4(solucion, numeroOperacionesDistintas, maximoPositivo)
-#    elif tipoOperacion == 4:
-#        return generaOperacionesTipo5(solucion, numeroOperacionesDistintas, maximoPositivo)
-#    elif tipoOperacion == 5:
-#        return generaOperacionesTipo6(solucion, numeroOperacionesDistintas, maximoPositivo)
-
 if conDenominadores == '1':
     numeroTiposOperaciones = 6
 else:
@@ -251,9 +236,6 @@ for koko in range(len(elementos)):
             pot = 2*random.randrange(0,int(len(cadenas)/2))
             fLaTeX.write(cadenas[pot]+r" & & \\\hline"+"\n")
             #----------------------------------------------  
-#            fLaTeX.write(r"\begin{normalsize}"+convierteLetraAOperacion(random.randrange(0, numeroTiposEcuaciones),numeroOperacionesDistintas,
-#                                                 codigoAlfabetico.get(elementos[koko][papa]),
-#                                                 maximoPositivo)[0] + r"\end{normalsize} & & \\\hline"+"\n")
     fLaTeX.write(r"\end{tabularx}"+"\n")
     fLaTeX.write(r"\end{footnotesize}"+"\n")
     funcionesBasicas.escribeFinalFichaLaTeX(fLaTeX)
