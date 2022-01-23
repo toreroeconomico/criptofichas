@@ -38,193 +38,193 @@ funcionesBasicas.escribePreambuloLaTeX(datos,fLaTeX)
 #######################################################################################
 # Parámetros
 #######################################################################################
+maximoPositivo = int(input("Introduce el máximo positivo: "))
 conDenominadores = input("¿Con denominadores (1) o sin denominadores (0)?: ") 
-if conDenominadores == '1':
-    numeroTiposEcuaciones = 6
-else:
-    numeroTiposEcuaciones = 3
-        
-numeroEcuacionesDistintas = 5
-maximoValor = 20
+numeroOperacionesDistintas = 4
 
 #######################################################################################
 # INICIO del código específico para esta ficha
 #######################################################################################
-def generaEcuacionesTipo1(solucion, numeroEcuacionesDistintas, maximoValor):
+def generaOperacionesTipo1(solucion, numeroOperacionesDistintas, maximoPositivo):
     # A(Bx+C) = D
     contador = 0
     listaOperaciones = []
     listaOperacionesUnicas = []
-    while contador < numeroEcuacionesDistintas:
-        A = random.randrange(-1,2,2)*random.randrange(2, maximoValor)
-        B = random.randrange(-1,2,2)*random.randrange(1, maximoValor)
-        C = random.randrange(-1,2,2)*random.randrange(1, maximoValor)
-        D = random.randrange(-1,2,2)*random.randrange(1, maximoValor)
+    while contador < numeroOperacionesDistintas:
+        A = random.randrange(-1,2,2)*random.randrange(2, maximoPositivo)
+        B = random.randrange(-1,2,2)*random.randrange(1, maximoPositivo)
+        C = random.randrange(-1,2,2)*random.randrange(1, maximoPositivo)
+        D = random.randrange(-1,2,2)*random.randrange(1, maximoPositivo)
         if (D-A*C) % (A*B) == 0 and  (D-A*C)/(A*B) == solucion:
-            textoOperacion = str(A) + "(" + str(B) + "x"
+            textoOperacion = "$" + str(A) + "(" + str(B) + "x"
             if C > 0:
                 textoOperacion += "+" + str(C) + ") = "
             else:
                 textoOperacion += str(C) + ") = "
-            textoOperacion += str(D)
+            textoOperacion += str(D) + "$"
             listaOperaciones.append(textoOperacion)
             listaOperacionesUnicas = np.unique(listaOperaciones)
             contador = len(listaOperacionesUnicas)
     return listaOperacionesUnicas
 
 
-def generaEcuacionesTipo2(solucion, numeroEcuacionesDistintas, maximoValor):
+def generaOperacionesTipo2(solucion, numeroOperacionesDistintas, maximoPositivo):
     # Ax+B = Cx+D
     contador = 0
     listaOperaciones = []
-    while contador < numeroEcuacionesDistintas:
-        A = random.randrange(-1,2,2)*random.randrange(1, maximoValor)
-        B = random.randrange(-1,2,2)*random.randrange(1, maximoValor)
-        C = random.randrange(-1,2,2)*random.randrange(1, maximoValor)
-        D = random.randrange(-1,2,2)*random.randrange(1, maximoValor)
+    while contador < numeroOperacionesDistintas:
+        A = random.randrange(-1,2,2)*random.randrange(1, maximoPositivo)
+        B = random.randrange(-1,2,2)*random.randrange(1, maximoPositivo)
+        C = random.randrange(-1,2,2)*random.randrange(1, maximoPositivo)
+        D = random.randrange(-1,2,2)*random.randrange(1, maximoPositivo)
         if (A-C) != 0:
             if (D-B)/(A-C) == solucion:
-                textoOperacion = str(A) + "x"
+                textoOperacion = "$" + str(A) + "x"
                 if B > 0:
                     textoOperacion += "+" + str(B) + " = "
                 else:
                     textoOperacion += str(B) + " = "
                 textoOperacion += str(C) + "x"
                 if D > 0:
-                    textoOperacion += "+" + str(D)
+                    textoOperacion += "+" + str(D) + "$"
                 else:
-                    textoOperacion += str(D)
+                    textoOperacion += str(D) + "$"
                 listaOperaciones.append(textoOperacion)
                 listaOperacionesUnicas = np.unique(listaOperaciones)
                 contador = len(listaOperacionesUnicas)
     return listaOperacionesUnicas
 
-def generaEcuacionesTipo3(solucion, numeroEcuacionesDistintas, maximoValor):
+def generaOperacionesTipo3(solucion, numeroOperacionesDistintas, maximoPositivo):
     # A(Bx+C) = D(Ex+F)
     contador = 0
     listaOperaciones = []
-    while contador < numeroEcuacionesDistintas:
-        A = random.randrange(1, maximoValor)
-        B = random.randrange(1, maximoValor)
-        C = random.randrange(1, maximoValor)
-        D = random.randrange(1, maximoValor)
-        E = random.randrange(1, maximoValor)
-        F = random.randrange(1, maximoValor)
+    while contador < numeroOperacionesDistintas:
+        A = random.randrange(1, maximoPositivo)
+        B = random.randrange(1, maximoPositivo)
+        C = random.randrange(1, maximoPositivo)
+        D = random.randrange(1, maximoPositivo)
+        E = random.randrange(1, maximoPositivo)
+        F = random.randrange(1, maximoPositivo)
         if (A*B-D*E) != 0:
             if (D*F-A*C)/(A*B-D*E) == solucion:
-                textoOperacion = str(A) + "(" + str(B) + "x"
+                textoOperacion = "$" + str(A) + "(" + str(B) + "x"
                 if C > 0:
                     textoOperacion += "+" + str(C) + ") = "
                 else:
                     textoOperacion += str(C) + ") = "
                 textoOperacion += str(D) + "(" + str(E) + "x"
                 if F > 0:
-                    textoOperacion += "+" + str(F) + ")"
+                    textoOperacion += "+" + str(F) + ")" + "$"
                 else:
-                    textoOperacion += str(F) + ")"
+                    textoOperacion += str(F) + ")" + "$"
                 listaOperaciones.append(textoOperacion)
                 listaOperacionesUnicas = np.unique(listaOperaciones)
                 contador = len(listaOperacionesUnicas)
     return listaOperacionesUnicas
 
-def generaEcuacionesTipo4(solucion, numeroEcuacionesDistintas, maximoValor):
+def generaOperacionesTipo4(solucion, numeroOperacionesDistintas, maximoPositivo):
     # (Ax+B)/C = (Dx+E)/F
     contador = 0
     listaOperaciones = []
-    while contador < numeroEcuacionesDistintas:
-        A = random.randrange(-1,2,2)*random.randrange(1, maximoValor)
-        B = random.randrange(-1,2,2)*random.randrange(1, maximoValor)
-        C = random.randrange(-1,2,2)*random.randrange(1, maximoValor)
-        D = random.randrange(-1,2,2)*random.randrange(1, maximoValor)
-        E = random.randrange(-1,2,2)*random.randrange(1, maximoValor)
-        F = random.randrange(-1,2,2)*random.randrange(1, maximoValor)
+    while contador < numeroOperacionesDistintas:
+        A = random.randrange(-1,2,2)*random.randrange(1, maximoPositivo)
+        B = random.randrange(-1,2,2)*random.randrange(1, maximoPositivo)
+        C = random.randrange(-1,2,2)*random.randrange(1, maximoPositivo)
+        D = random.randrange(-1,2,2)*random.randrange(1, maximoPositivo)
+        E = random.randrange(-1,2,2)*random.randrange(1, maximoPositivo)
+        F = random.randrange(-1,2,2)*random.randrange(1, maximoPositivo)
         if F != C and (F*A-C*D) != 0:
             if (C*E-F*B)/(F*A-C*D) == solucion:
-                textoOperacion = "\dfrac{" + str(A) + "x"
+                textoOperacion = "$" + "\dfrac{" + str(A) + "x"
                 if B > 0:
                     textoOperacion += "+" + str(B) + "}{" + str(C) + "} = "
                 else:
                     textoOperacion += str(B) + "}{" + str(C) + "} = "
                 textoOperacion += "\dfrac{" + str(D) + "x"
                 if E > 0:
-                    textoOperacion += "+" + str(E) + "}{" + str(F) + "}"
+                    textoOperacion += "+" + str(E) + "}{" + str(F) + "}" + "$"
                 else:
-                    textoOperacion += str(E) + "}{" + str(F) + "}"
+                    textoOperacion += str(E) + "}{" + str(F) + "}" + "$"
                 listaOperaciones.append(textoOperacion)
                 listaOperacionesUnicas = np.unique(listaOperaciones)
                 contador = len(listaOperacionesUnicas)
     return listaOperacionesUnicas
 
-def generaEcuacionesTipo5(solucion, numeroEcuacionesDistintas, maximoValor):
+def generaOperacionesTipo5(solucion, numeroOperacionesDistintas, maximoPositivo):
     # (Ax+B)/C = (Dx+E)
     contador = 0
     listaOperaciones = []
-    while contador < numeroEcuacionesDistintas:
-        A = random.randrange(-1,2,2)*random.randrange(1, maximoValor)
-        B = random.randrange(-1,2,2)*random.randrange(1, maximoValor)
-        C = random.randrange(-1,2,2)*random.randrange(2, maximoValor)
-        D = random.randrange(-1,2,2)*random.randrange(1, maximoValor)
-        E = random.randrange(-1,2,2)*random.randrange(1, maximoValor)
+    while contador < numeroOperacionesDistintas:
+        A = random.randrange(-1,2,2)*random.randrange(1, maximoPositivo)
+        B = random.randrange(-1,2,2)*random.randrange(1, maximoPositivo)
+        C = random.randrange(-1,2,2)*random.randrange(2, maximoPositivo)
+        D = random.randrange(-1,2,2)*random.randrange(1, maximoPositivo)
+        E = random.randrange(-1,2,2)*random.randrange(1, maximoPositivo)
         F = 1
         if (F*A-C*D) != 0:
             if (C*E-F*B)/(F*A-C*D) == solucion:
-                textoOperacion = "\dfrac{" + str(A) + "x"
+                textoOperacion = "$" + "\dfrac{" + str(A) + "x"
                 if B > 0:
                     textoOperacion += "+" + str(B) + "}{" + str(C) + "} = "
                 else:
                     textoOperacion += str(B) + "}{" + str(C) + "} = "
                 textoOperacion += str(D) + "x"
                 if E > 0:
-                    textoOperacion += "+" + str(E)
+                    textoOperacion += "+" + str(E) + "$"
                 else:
-                    textoOperacion += str(E)
+                    textoOperacion += str(E) + "$"
                 listaOperaciones.append(textoOperacion)
                 listaOperacionesUnicas = np.unique(listaOperaciones)
                 contador = len(listaOperacionesUnicas)
     return listaOperacionesUnicas
 
-def generaEcuacionesTipo6(solucion, numeroEcuacionesDistintas, maximoValor):
+def generaOperacionesTipo6(solucion, numeroOperacionesDistintas, maximoPositivo):
     # A(Bx+C) = (Dx+E)/F
     contador = 0
     listaOperaciones = []
-    while contador < numeroEcuacionesDistintas:
-        A = random.randrange(-1,2,2)*random.randrange(1, maximoValor)
-        B = random.randrange(-1,2,2)*random.randrange(1, maximoValor)
-        C = random.randrange(-1,2,2)*random.randrange(1, maximoValor)
-        D = random.randrange(-1,2,2)*random.randrange(1, maximoValor)
-        E = random.randrange(-1,2,2)*random.randrange(1, maximoValor)
-        F = random.randrange(-1,2,2)*random.randrange(2, maximoValor)
+    while contador < numeroOperacionesDistintas:
+        A = random.randrange(-1,2,2)*random.randrange(1, maximoPositivo)
+        B = random.randrange(-1,2,2)*random.randrange(1, maximoPositivo)
+        C = random.randrange(-1,2,2)*random.randrange(1, maximoPositivo)
+        D = random.randrange(-1,2,2)*random.randrange(1, maximoPositivo)
+        E = random.randrange(-1,2,2)*random.randrange(1, maximoPositivo)
+        F = random.randrange(-1,2,2)*random.randrange(2, maximoPositivo)
         if (A*F*B-D) != 0:
             if (-A*F*C+E)/(A*F*B-D) == solucion:
-                textoOperacion = str(A) + "(" + str(B) + "x"
+                textoOperacion = "$" + str(A) + "(" + str(B) + "x"
                 if C > 0:
                     textoOperacion += "+" + str(C) + ") = "
                 else:
                     textoOperacion += str(C) + ") = "
                 textoOperacion += "\dfrac{" + str(D) + "x"
                 if E > 0:
-                    textoOperacion += "+" + str(E) + "}{" + str(F) + "}"
+                    textoOperacion += "+" + str(E) + "}{" + str(F) + "}" + "$"
                 else:
-                    textoOperacion += str(E) + "}{" + str(F) + "}"
+                    textoOperacion += str(E) + "}{" + str(F) + "}" + "$"
                 listaOperaciones.append(textoOperacion)
                 listaOperacionesUnicas = np.unique(listaOperaciones)
                 contador = len(listaOperacionesUnicas)
     return listaOperacionesUnicas
 
 
-def convierteLetraAOperacion(tipoOperacion, numeroEcuacionesDistintas, solucion, maximoValor):
-    if tipoOperacion == 0:
-        return generaEcuacionesTipo1(solucion, numeroEcuacionesDistintas, maximoValor)
-    elif tipoOperacion == 1:
-        return generaEcuacionesTipo2(solucion, numeroEcuacionesDistintas, maximoValor)
-    elif tipoOperacion == 2:
-        return generaEcuacionesTipo3(solucion, numeroEcuacionesDistintas, maximoValor)
-    elif tipoOperacion == 3:
-        return generaEcuacionesTipo4(solucion, numeroEcuacionesDistintas, maximoValor)
-    elif tipoOperacion == 4:
-        return generaEcuacionesTipo5(solucion, numeroEcuacionesDistintas, maximoValor)
-    elif tipoOperacion == 5:
-        return generaEcuacionesTipo6(solucion, numeroEcuacionesDistintas, maximoValor)
+#def convierteLetraAOperacion(tipoOperacion, numeroOperacionesDistintas, solucion, maximoPositivo):
+#    if tipoOperacion == 0:
+#        return generaOperacionesTipo1(solucion, numeroOperacionesDistintas, maximoPositivo)
+#    elif tipoOperacion == 1:
+#        return generaOperacionesTipo2(solucion, numeroOperacionesDistintas, maximoPositivo)
+#    elif tipoOperacion == 2:
+#        return generaOperacionesTipo3(solucion, numeroOperacionesDistintas, maximoPositivo)
+#    elif tipoOperacion == 3:
+#        return generaOperacionesTipo4(solucion, numeroOperacionesDistintas, maximoPositivo)
+#    elif tipoOperacion == 4:
+#        return generaOperacionesTipo5(solucion, numeroOperacionesDistintas, maximoPositivo)
+#    elif tipoOperacion == 5:
+#        return generaOperacionesTipo6(solucion, numeroOperacionesDistintas, maximoPositivo)
+
+if conDenominadores == '1':
+    numeroTiposOperaciones = 6
+else:
+    numeroTiposOperaciones = 3
 
 #######################################################################################
 # INICIO del código LaTeX específico para esta ficha
@@ -240,14 +240,20 @@ for koko in range(len(elementos)):
     fLaTeX.write(r"	\hline"+"\n")
     fLaTeX.write(r"	\textbf{Ecuación} & \textbf{Solución} & \textbf{Letra} \\"+"\n")
     fLaTeX.write(r"	\hline"+"\n")
-    print(elementos[koko])
+    # Añadimos al archivo fuente LaTeX las operaciones para cada letra de este elemento.
+    print(str(koko+1), "de", str(len(elementos)),":", elementos[koko])
+    operacionesDistintas = funcionesBasicas.generaOperacionesDistintas(numeroTiposOperaciones,len(elementos[koko]))
     for papa in range(len(elementos[koko])):
-        # Obtenemos el número correspondiente a cada letra del primer elemento,
-        # y generamos una operación que da ese número como resultado.
+        # Obtenemos el número correspondiente a cada letra del primer elemento, y generamos una operación que da ese número como resultado.
         if codigoAlfabetico.get(elementos[koko][papa]) is not None:
-            fLaTeX.write(r"\begin{normalsize}	$"+convierteLetraAOperacion(random.randrange(0, numeroTiposEcuaciones),numeroEcuacionesDistintas,
-                                                 codigoAlfabetico.get(elementos[koko][papa]),
-                                                 maximoValor)[0] + r"$\end{normalsize} & & \\\hline"+"\n")
+            #----------------------------------------------
+            exec("cadenas = generaOperacionesTipo" + str(operacionesDistintas[papa]+1) + "(codigoAlfabetico.get(elementos[koko][papa]), numeroOperacionesDistintas, maximoPositivo)")
+            pot = 2*random.randrange(0,int(len(cadenas)/2))
+            fLaTeX.write(cadenas[pot]+r" & & \\\hline"+"\n")
+            #----------------------------------------------  
+#            fLaTeX.write(r"\begin{normalsize}"+convierteLetraAOperacion(random.randrange(0, numeroTiposEcuaciones),numeroOperacionesDistintas,
+#                                                 codigoAlfabetico.get(elementos[koko][papa]),
+#                                                 maximoPositivo)[0] + r"\end{normalsize} & & \\\hline"+"\n")
     fLaTeX.write(r"\end{tabularx}"+"\n")
     fLaTeX.write(r"\end{footnotesize}"+"\n")
     funcionesBasicas.escribeFinalFichaLaTeX(fLaTeX)
