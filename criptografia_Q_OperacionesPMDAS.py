@@ -38,9 +38,8 @@ funcionesBasicas.escribePreambuloLaTeX(datos,fLaTeX)
 #######################################################################################
 # Parámetros
 #######################################################################################
-numeroTiposOperaciones = 7
-numeroOperacionesDistintas = 4
-maximoPositivo = 40
+numeroOperacionesDistintas = 3
+maximoPositivo = int(input("Introduce el máximo positivo: "))
 
 #######################################################################################
 # INICIO del código específico para esta ficha
@@ -63,137 +62,6 @@ def generaParejaNumeradorDenominador(maximoPositivo):
             seguir = 0
     return Np1,Dp1        
 
-def generaOperacionesTipo1(numeradorOperacion, denominadorOperacion, numeroOperaciones, maximoPositivo):
-    # 4·1/2-3·2/3=
-    contador = 0
-    listaOperaciones = []
-    while contador < numeroOperaciones:
-        Zp1 = generaEnteroAleatorio(-maximoPositivo,maximoPositivo,[0])
-        Zp2 = generaEnteroAleatorio(2,maximoPositivo,[0])
-        [Np1, Dp1] = generaParejaNumeradorDenominador(maximoPositivo)
-        [Np2, Dp2] = generaParejaNumeradorDenominador(maximoPositivo)
-        if Zp1*(Np1/Dp1)-Zp2*(Np2/Dp2) == numeradorOperacion/denominadorOperacion:
-            textoOperacion = str(Zp1) + "\cdot{}" + "\dfrac{" + str(Np1) + "}{" + str(Dp1) + "}" + \
-                "-" + str(Zp2) + "\cdot{}" + "\dfrac{" + str(Np2) + "}{" + str(Dp2) + "}"
-            listaOperaciones.append(textoOperacion)
-            listaOperacionesUnicas = np.unique(listaOperaciones)
-            contador = len(listaOperacionesUnicas)
-    return listaOperacionesUnicas
-
-def generaOperacionesTipo2(numeradorOperacion, denominadorOperacion, numeroOperaciones, maximoPositivo):
-    # 1/2-2/3=
-    contador = 0
-    listaOperaciones = []
-    while contador < numeroOperaciones:
-        [Np1, Dp1] = generaParejaNumeradorDenominador(maximoPositivo)
-        [Np2, Dp2] = generaParejaNumeradorDenominador(maximoPositivo)
-        if (Np1/Dp1)-(Np2/Dp2) == numeradorOperacion/denominadorOperacion:
-            textoOperacion = "\dfrac{" + str(Np1) + "}{" + str(Dp1) + "}" + "-" + "\dfrac{" + \
-                str(Np2) + "}{" + str(Dp2) + "}"
-            listaOperaciones.append(textoOperacion)
-            listaOperacionesUnicas = np.unique(listaOperaciones)
-            contador = len(listaOperacionesUnicas)
-    return listaOperacionesUnicas
-
-def generaOperacionesTipo3(numeradorOperacion, denominadorOperacion, numeroOperaciones, maximoPositivo):
-    # -1/2+2/3=
-    contador = 0
-    listaOperaciones = []
-    while contador < numeroOperaciones:
-        Nn1 = random.randrange(-maximoPositivo, -1)
-        [Np1, Dp1] = generaParejaNumeradorDenominador(maximoPositivo)
-        [Np2, Dp2] = generaParejaNumeradorDenominador(maximoPositivo)
-        if (Nn1/Dp1)+(Np2/Dp2) == numeradorOperacion/denominadorOperacion:
-            textoOperacion = "\dfrac{" + str(Nn1) + "}{" + str(Dp1) + "}" + "+" + "\dfrac{" + \
-                str(Np2) + "}{" + str(Dp2) + "}"
-            listaOperaciones.append(textoOperacion)
-            listaOperacionesUnicas = np.unique(listaOperaciones)
-            contador = len(listaOperacionesUnicas)
-    return listaOperacionesUnicas
-
-def generaOperacionesTipo4(numeradorOperacion, denominadorOperacion, numeroOperaciones, maximoPositivo):
-    # -1/2+2/3-2/3=
-    contador = 0
-    listaOperaciones = []
-    while contador < numeroOperaciones:
-        [Np1, Dp1] = generaParejaNumeradorDenominador(maximoPositivo)
-        [Np2, Dp2] = generaParejaNumeradorDenominador(maximoPositivo)
-        [Np3, Dp3] = generaParejaNumeradorDenominador(maximoPositivo)
-        if -(Np1/Dp1)+(Np2/Dp2)-(Np3/Dp3) == numeradorOperacion/denominadorOperacion:
-            textoOperacion = "-" + "\dfrac{" + str(Np1) + "}{" + str(Dp1) + "}" + "+" + "\dfrac{" + \
-                str(Np2) + "}{" + str(Dp2) + "}" + "-" + "\dfrac{" + str(Np3) + "}{" + str(Dp3) + "}"
-            listaOperaciones.append(textoOperacion)
-            listaOperacionesUnicas = np.unique(listaOperaciones)
-            contador = len(listaOperacionesUnicas)
-    return listaOperacionesUnicas
-
-def generaOperacionesTipo5(numeradorOperacion, denominadorOperacion, numeroOperaciones, maximoPositivo):
-    # -1/2·(2/3-2/3)=
-    contador = 0
-    listaOperaciones = []
-    while contador < numeroOperaciones:
-        [Np1, Dp1] = generaParejaNumeradorDenominador(maximoPositivo)
-        [Np2, Dp2] = generaParejaNumeradorDenominador(maximoPositivo)
-        [Np3, Dp3] = generaParejaNumeradorDenominador(maximoPositivo)
-        if (-Np1/Dp1)*((Np2/Dp2)-(Np3/Dp3)) == numeradorOperacion/denominadorOperacion:
-            textoOperacion = "-" + "\dfrac{" + str(Np1) + "}{" + str(Dp1) + "}" + "\cdot{}" + "\Big(\dfrac{" + str(Np2) + \
-                "}{" + str(Dp2) + "}" + "-" + "\dfrac{" + str(Np3) + "}{" + str(Dp3) + "}\Big)"
-            listaOperaciones.append(textoOperacion)
-            listaOperacionesUnicas = np.unique(listaOperaciones)
-            contador = len(listaOperacionesUnicas)
-    return listaOperacionesUnicas
-
-def generaOperacionesTipo6(numeradorOperacion, denominadorOperacion, numeroOperaciones, maximoPositivo):
-    # 1/2·2/3-2/3:1/3=
-    contador = 0
-    listaOperaciones = []
-    while contador < numeroOperaciones:
-        [Np1, Dp1] = generaParejaNumeradorDenominador(maximoPositivo)
-        [Np2, Dp2] = generaParejaNumeradorDenominador(maximoPositivo)
-        [Np3, Dp3] = generaParejaNumeradorDenominador(maximoPositivo)
-        [Np4, Dp4] = generaParejaNumeradorDenominador(maximoPositivo)
-        if (Np1/Dp1)*(Np2/Dp2)-(Np3/Dp3)/(Np4/Dp4) == numeradorOperacion/denominadorOperacion:
-            textoOperacion = "\dfrac{" + str(Np1) + "}{" + str(Dp1) + "}" + "\cdot{}" + "\dfrac{" + str(Np2) + \
-                "}{" + str(Dp2) + "}" + "-" + "\dfrac{" + str(Np3) + "}{" + str(Dp3) + "}:\dfrac{" + str(Np4) + "}{" + str(Dp4) + "}"
-            listaOperaciones.append(textoOperacion)
-            listaOperacionesUnicas = np.unique(listaOperaciones)
-            contador = len(listaOperacionesUnicas)
-    return listaOperacionesUnicas
-
-def generaOperacionesTipo7(numeradorOperacion, denominadorOperacion, numeroOperaciones, maximoPositivo):
-    # 1/2·(2/3-2/3):1/3=
-    contador = 0
-    listaOperaciones = []
-    while contador < numeroOperaciones:
-        [Np1, Dp1] = generaParejaNumeradorDenominador(maximoPositivo)
-        [Np2, Dp2] = generaParejaNumeradorDenominador(maximoPositivo)
-        [Np3, Dp3] = generaParejaNumeradorDenominador(maximoPositivo)
-        [Np4, Dp4] = generaParejaNumeradorDenominador(maximoPositivo)
-        if (Np1/Dp1)*((Np2/Dp2)-(Np3/Dp3))/(Np4/Dp4) == numeradorOperacion/denominadorOperacion:
-            textoOperacion = "\dfrac{" + str(Np1) + "}{" + str(Dp1) + "}" + "\cdot{}" + "\Big(\dfrac{" + str(Np2) + \
-                "}{" + str(Dp2) + "}" + "-" + "\dfrac{" + str(Np3) + "}{" + str(Dp3) + "}\Big):\dfrac{" + str(Np4) + "}{" + str(Dp4) + "}"
-            listaOperaciones.append(textoOperacion)
-            listaOperacionesUnicas = np.unique(listaOperaciones)
-            contador = len(listaOperacionesUnicas)
-    return listaOperacionesUnicas
-
-
-def convierteLetraAOperacion(tipoOperacion, numeroOperacionesDistintas, numeradorOperacion, denominadorOperacion, maximoPositivo):
-    if tipoOperacion == 0:
-        return generaOperacionesTipo1(numeradorOperacion, denominadorOperacion, numeroOperacionesDistintas, maximoPositivo)
-    elif tipoOperacion == 1:
-        return generaOperacionesTipo2(numeradorOperacion, denominadorOperacion, numeroOperacionesDistintas, maximoPositivo)
-    elif tipoOperacion == 2:
-        return generaOperacionesTipo3(numeradorOperacion, denominadorOperacion, numeroOperacionesDistintas, maximoPositivo)
-    elif tipoOperacion == 3:
-        return generaOperacionesTipo4(numeradorOperacion, denominadorOperacion, numeroOperacionesDistintas, maximoPositivo)
-    elif tipoOperacion == 4:
-        return generaOperacionesTipo5(numeradorOperacion, denominadorOperacion, numeroOperacionesDistintas, maximoPositivo)
-    elif tipoOperacion == 5:
-        return generaOperacionesTipo6(numeradorOperacion, denominadorOperacion, numeroOperacionesDistintas, maximoPositivo)
-    elif tipoOperacion == 6:
-        return generaOperacionesTipo7(numeradorOperacion, denominadorOperacion, numeroOperacionesDistintas, maximoPositivo)
-    
 def convierteFraccionALatex(fraccion):
     if fraccion.denominator == 1:
         return ("$" + str(fraccion.numerator) + "$")
@@ -214,6 +82,121 @@ def generaDenominador(numerador):
                 seguir = 0 
     return denominador
 
+def generaOperacionesTipo1(numeradorOperacion, denominadorOperacion, numeroOperacionesDistintas, maximoPositivo):
+    # 4·1/2-3·2/3=
+    contador = 0
+    listaOperaciones = []
+    while contador < numeroOperacionesDistintas:
+        Zp1 = generaEnteroAleatorio(-maximoPositivo,maximoPositivo,[0])
+        Zp2 = generaEnteroAleatorio(2,maximoPositivo,[0])
+        [Np1, Dp1] = generaParejaNumeradorDenominador(maximoPositivo)
+        [Np2, Dp2] = generaParejaNumeradorDenominador(maximoPositivo)
+        if Zp1*(Np1/Dp1)-Zp2*(Np2/Dp2) == numeradorOperacion/denominadorOperacion:
+            textoOperacion = "$" + str(Zp1) + "\cdot{}" + "\dfrac{" + str(Np1) + "}{" + str(Dp1) + "}" + \
+                "-" + str(Zp2) + "\cdot{}" + "\dfrac{" + str(Np2) + "}{" + str(Dp2) + "}" + "$"
+            listaOperaciones.append(textoOperacion)
+            listaOperacionesUnicas = np.unique(listaOperaciones)
+            contador = len(listaOperacionesUnicas)
+    return listaOperacionesUnicas
+
+def generaOperacionesTipo2(numeradorOperacion, denominadorOperacion, numeroOperacionesDistintas, maximoPositivo):
+    # 1/2-2/3=
+    contador = 0
+    listaOperaciones = []
+    while contador < numeroOperacionesDistintas:
+        [Np1, Dp1] = generaParejaNumeradorDenominador(maximoPositivo)
+        [Np2, Dp2] = generaParejaNumeradorDenominador(maximoPositivo)
+        if (Np1/Dp1)-(Np2/Dp2) == numeradorOperacion/denominadorOperacion:
+            textoOperacion = "$" + "\dfrac{" + str(Np1) + "}{" + str(Dp1) + "}" + "-" + "\dfrac{" + \
+                str(Np2) + "}{" + str(Dp2) + "}" + "$"
+            listaOperaciones.append(textoOperacion)
+            listaOperacionesUnicas = np.unique(listaOperaciones)
+            contador = len(listaOperacionesUnicas)
+    return listaOperacionesUnicas
+
+def generaOperacionesTipo3(numeradorOperacion, denominadorOperacion, numeroOperacionesDistintas, maximoPositivo):
+    # -1/2+2/3=
+    contador = 0
+    listaOperaciones = []
+    while contador < numeroOperacionesDistintas:
+        Nn1 = random.randrange(-maximoPositivo, -1)
+        [Np1, Dp1] = generaParejaNumeradorDenominador(maximoPositivo)
+        [Np2, Dp2] = generaParejaNumeradorDenominador(maximoPositivo)
+        if (Nn1/Dp1)+(Np2/Dp2) == numeradorOperacion/denominadorOperacion:
+            textoOperacion = "$" + "\dfrac{" + str(Nn1) + "}{" + str(Dp1) + "}" + "+" + "\dfrac{" + \
+                str(Np2) + "}{" + str(Dp2) + "}" + "$"
+            listaOperaciones.append(textoOperacion)
+            listaOperacionesUnicas = np.unique(listaOperaciones)
+            contador = len(listaOperacionesUnicas)
+    return listaOperacionesUnicas
+
+def generaOperacionesTipo4(numeradorOperacion, denominadorOperacion, numeroOperacionesDistintas, maximoPositivo):
+    # -1/2+2/3-2/3=
+    contador = 0
+    listaOperaciones = []
+    while contador < numeroOperacionesDistintas:
+        [Np1, Dp1] = generaParejaNumeradorDenominador(maximoPositivo)
+        [Np2, Dp2] = generaParejaNumeradorDenominador(maximoPositivo)
+        [Np3, Dp3] = generaParejaNumeradorDenominador(maximoPositivo)
+        if -(Np1/Dp1)+(Np2/Dp2)-(Np3/Dp3) == numeradorOperacion/denominadorOperacion:
+            textoOperacion = "$" + "-" + "\dfrac{" + str(Np1) + "}{" + str(Dp1) + "}" + "+" + "\dfrac{" + \
+                str(Np2) + "}{" + str(Dp2) + "}" + "-" + "\dfrac{" + str(Np3) + "}{" + str(Dp3) + "}" + "$"
+            listaOperaciones.append(textoOperacion)
+            listaOperacionesUnicas = np.unique(listaOperaciones)
+            contador = len(listaOperacionesUnicas)
+    return listaOperacionesUnicas
+
+def generaOperacionesTipo5(numeradorOperacion, denominadorOperacion, numeroOperacionesDistintas, maximoPositivo):
+    # -1/2·(2/3-2/3)=
+    contador = 0
+    listaOperaciones = []
+    while contador < numeroOperacionesDistintas:
+        [Np1, Dp1] = generaParejaNumeradorDenominador(maximoPositivo)
+        [Np2, Dp2] = generaParejaNumeradorDenominador(maximoPositivo)
+        [Np3, Dp3] = generaParejaNumeradorDenominador(maximoPositivo)
+        if (-Np1/Dp1)*((Np2/Dp2)-(Np3/Dp3)) == numeradorOperacion/denominadorOperacion:
+            textoOperacion = "$" + "-" + "\dfrac{" + str(Np1) + "}{" + str(Dp1) + "}" + "\cdot{}" + "\Big(\dfrac{" + str(Np2) + \
+                "}{" + str(Dp2) + "}" + "-" + "\dfrac{" + str(Np3) + "}{" + str(Dp3) + "}\Big)" + "$"
+            listaOperaciones.append(textoOperacion)
+            listaOperacionesUnicas = np.unique(listaOperaciones)
+            contador = len(listaOperacionesUnicas)
+    return listaOperacionesUnicas
+
+def generaOperacionesTipo6(numeradorOperacion, denominadorOperacion, numeroOperacionesDistintas, maximoPositivo):
+    # 1/2·2/3-2/3:1/3=
+    contador = 0
+    listaOperaciones = []
+    while contador < numeroOperacionesDistintas:
+        [Np1, Dp1] = generaParejaNumeradorDenominador(maximoPositivo)
+        [Np2, Dp2] = generaParejaNumeradorDenominador(maximoPositivo)
+        [Np3, Dp3] = generaParejaNumeradorDenominador(maximoPositivo)
+        [Np4, Dp4] = generaParejaNumeradorDenominador(maximoPositivo)
+        if (Np1/Dp1)*(Np2/Dp2)-(Np3/Dp3)/(Np4/Dp4) == numeradorOperacion/denominadorOperacion:
+            textoOperacion = "$" + "\dfrac{" + str(Np1) + "}{" + str(Dp1) + "}" + "\cdot{}" + "\dfrac{" + str(Np2) + \
+                "}{" + str(Dp2) + "}" + "-" + "\dfrac{" + str(Np3) + "}{" + str(Dp3) + "}:\dfrac{" + str(Np4) + "}{" + str(Dp4) + "}" + "$"
+            listaOperaciones.append(textoOperacion)
+            listaOperacionesUnicas = np.unique(listaOperaciones)
+            contador = len(listaOperacionesUnicas)
+    return listaOperacionesUnicas
+
+def generaOperacionesTipo7(numeradorOperacion, denominadorOperacion, numeroOperacionesDistintas, maximoPositivo):
+    # 1/2·(2/3-2/3):1/3=
+    contador = 0
+    listaOperaciones = []
+    while contador < numeroOperacionesDistintas:
+        [Np1, Dp1] = generaParejaNumeradorDenominador(maximoPositivo)
+        [Np2, Dp2] = generaParejaNumeradorDenominador(maximoPositivo)
+        [Np3, Dp3] = generaParejaNumeradorDenominador(maximoPositivo)
+        [Np4, Dp4] = generaParejaNumeradorDenominador(maximoPositivo)
+        if (Np1/Dp1)*((Np2/Dp2)-(Np3/Dp3))/(Np4/Dp4) == numeradorOperacion/denominadorOperacion:
+            textoOperacion = "$" + "\dfrac{" + str(Np1) + "}{" + str(Dp1) + "}" + "\cdot{}" + "\Big(\dfrac{" + str(Np2) + \
+                "}{" + str(Dp2) + "}" + "-" + "\dfrac{" + str(Np3) + "}{" + str(Dp3) + "}\Big):\dfrac{" + str(Np4) + "}{" + str(Dp4) + "}" + "$"
+            listaOperaciones.append(textoOperacion)
+            listaOperacionesUnicas = np.unique(listaOperaciones)
+            contador = len(listaOperacionesUnicas)
+    return listaOperacionesUnicas
+
+numeroTiposOperaciones = 7
 #######################################################################################
 # INICIO del código LaTeX específico para esta ficha
 #######################################################################################
@@ -233,14 +216,14 @@ for koko in range(len(elementos)):
     operacionesDistintas = funcionesBasicas.generaOperacionesDistintas(numeroTiposOperaciones,len(elementos[koko]))
     for papa in range(len(elementos[koko])):
         #print(elementos[koko][papa],":",str(operacion+1))
-        # Obtenemos el número correspondiente a cada letra del primer elemento,
-        # y generamos unas cuantas operaciones que dan ese número como resultado.
-        # De ellas nos quedamos con la primera. De esa forma, letras iguales tendrán
-        # probablemente operaciones diferentes.
+        # Obtenemos el número correspondiente a cada letra del primer elemento, y generamos unas cuantas operaciones que dan ese número como resultado.
+        # De ellas nos quedamos con la primera. De esa forma, letras iguales tendrán probablemente operaciones diferentes.
         if codigoAlfabetico.get(elementos[koko][papa]) is not None:
-            fLaTeX.write(r" $"+convierteLetraAOperacion(operacionesDistintas[papa],numeroOperacionesDistintas,codigoAlfabetico.get(elementos[koko][papa]),
-                                             generaDenominador(codigoAlfabetico.get(elementos[koko][papa])),
-                                             maximoPositivo)[0]+r"$ & & \\\hline"+"\n")
+            #----------------------------------------------
+            exec("cadenas = generaOperacionesTipo" + str(operacionesDistintas[papa]+1) + "(codigoAlfabetico.get(elementos[koko][papa]), generaDenominador(codigoAlfabetico.get(elementos[koko][papa])), numeroOperacionesDistintas, maximoPositivo)")
+            pot = 2*random.randrange(0,int(len(cadenas)/2))
+            fLaTeX.write(cadenas[pot]+r" & & \\\hline"+"\n")
+            #----------------------------------------------  
     fLaTeX.write(r"\end{tabularx}"+"\n")
     funcionesBasicas.escribeFinalFichaLaTeX(fLaTeX)
 fLaTeX.write(r"\end{document}"+"\n")

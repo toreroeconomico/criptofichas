@@ -39,14 +39,13 @@ funcionesBasicas.escribePreambuloLaTeX(datos,fLaTeX)
 #######################################################################################
 # Parámetros
 #######################################################################################
-numeroExpresionesDistintas = 11
-maximoPositivo = 35
-minimoNegativo = -35
+maximoPositivo = int(input("Introduce el máximo positivo: "))
+minimoNegativo = -maximoPositivo
 
 #######################################################################################
 # INICIO del código específico para esta ficha
 #######################################################################################
-def generaExpresionesTipo1(solucion, maximoPositivo, minimoNegativo):
+def generaOperacionesTipo1(solucion, maximoPositivo, minimoNegativo):
     # p + (p+1) + (p+2)
     listaExpresiones = []
     textoOperacion = "$p + (p+1) + (p+2)$"
@@ -54,7 +53,7 @@ def generaExpresionesTipo1(solucion, maximoPositivo, minimoNegativo):
     listaExpresiones.append("$p="+str(round((solucion-3)/3,2))+"$")
     return listaExpresiones
 
-def generaExpresionesTipo2(solucion, maximoPositivo, minimoNegativo):
+def generaOperacionesTipo2(solucion, maximoPositivo, minimoNegativo):
     # Ap +B
     seguir = 1
     while seguir == 1:
@@ -72,7 +71,7 @@ def generaExpresionesTipo2(solucion, maximoPositivo, minimoNegativo):
     listaExpresiones.append("$b="+str(round((solucion-B)/A,2))+"$")
     return listaExpresiones
 
-def generaExpresionesTipo3(solucion, maximoPositivo, minimoNegativo):
+def generaOperacionesTipo3(solucion, maximoPositivo, minimoNegativo):
     # (Ap +B)(Cp+D)
     seguir = 1
     while seguir == 1:
@@ -104,7 +103,7 @@ def generaExpresionesTipo3(solucion, maximoPositivo, minimoNegativo):
     listaExpresiones.append("$x="+str(round(x1,2))+"$")
     return listaExpresiones
 
-def generaExpresionesTipo4(solucion, maximoPositivo, minimoNegativo):
+def generaOperacionesTipo4(solucion, maximoPositivo, minimoNegativo):
     # Ap+Bq
     seguir = 1
     while seguir == 1:
@@ -124,7 +123,7 @@ def generaExpresionesTipo4(solucion, maximoPositivo, minimoNegativo):
     listaExpresiones.append("$p=" + str(p) + ", q=" + str(q) + "$")
     return listaExpresiones
 
-def generaExpresionesTipo5(solucion, maximoPositivo, minimoNegativo):
+def generaOperacionesTipo5(solucion, maximoPositivo, minimoNegativo):
     # At+Bu^2+C
     seguir = 1
     while seguir == 1:
@@ -149,7 +148,7 @@ def generaExpresionesTipo5(solucion, maximoPositivo, minimoNegativo):
     listaExpresiones.append("$t=" + str(t) + ", u=" + str(u) + "$")
     return listaExpresiones
 
-def generaExpresionesTipo6(solucion, maximoPositivo, minimoNegativo):
+def generaOperacionesTipo6(solucion, maximoPositivo, minimoNegativo):
     # A(t+B)
     seguir = 1
     while seguir == 1:
@@ -168,7 +167,7 @@ def generaExpresionesTipo6(solucion, maximoPositivo, minimoNegativo):
     listaExpresiones.append("$m=" + str(t) + "$")
     return listaExpresiones
 
-def generaExpresionesTipo7(solucion, maximoPositivo, minimoNegativo):
+def generaOperacionesTipo7(solucion, maximoPositivo, minimoNegativo):
     # p(p+A)/B
     seguir = 1
     while seguir == 1:
@@ -193,7 +192,7 @@ def generaExpresionesTipo7(solucion, maximoPositivo, minimoNegativo):
     listaExpresiones.append("$p=" + str(x2) + "$")
     return listaExpresiones
 
-def generaExpresionesTipo8(solucion, maximoPositivo, minimoNegativo):
+def generaOperacionesTipo8(solucion, maximoPositivo, minimoNegativo):
     # Ap(p+B)
     seguir = 1
     while seguir == 1:
@@ -218,7 +217,7 @@ def generaExpresionesTipo8(solucion, maximoPositivo, minimoNegativo):
     listaExpresiones.append("$p=" + str(x1) + "$")
     return listaExpresiones
 
-def generaExpresionesTipo9(solucion, maximoPositivo, minimoNegativo):
+def generaOperacionesTipo9(solucion, maximoPositivo, minimoNegativo):
     # A+xyz+By^2
     seguir = 1
     while seguir == 1:
@@ -240,7 +239,7 @@ def generaExpresionesTipo9(solucion, maximoPositivo, minimoNegativo):
     listaExpresiones.append("$x=" + str(x) + ", y=" + str(y) + ", z=" + str(z) + "$")
     return listaExpresiones
 
-def generaExpresionesTipo10(solucion, maximoPositivo, minimoNegativo):
+def generaOperacionesTipo10(solucion, maximoPositivo, minimoNegativo):
     # (A+p)/(p-2)
     seguir = 1
     while seguir == 1:
@@ -258,7 +257,7 @@ def generaExpresionesTipo10(solucion, maximoPositivo, minimoNegativo):
     listaExpresiones.append("$p=" + str(pRedondeado) + "$")
     return listaExpresiones
 
-def generaExpresionesTipo11(solucion, maximoPositivo, minimoNegativo):
+def generaOperacionesTipo11(solucion, maximoPositivo, minimoNegativo):
     # (Ap^2-Bp)/(Cp^2-Dp)
     seguir = 1
     while seguir == 1:
@@ -286,32 +285,7 @@ def generaExpresionesTipo11(solucion, maximoPositivo, minimoNegativo):
     listaExpresiones.append("$p=" + str(pRedondeado) + "$")
     return listaExpresiones
 
-def convierteLetraAExpresion(tipoOperacion, solucion, maximoPositivo, minimoNegativo):
-    # Fracciones
-    if tipoOperacion == 0:
-        return generaExpresionesTipo1(solucion, maximoPositivo, minimoNegativo)
-    elif tipoOperacion == 1:
-        return generaExpresionesTipo2(solucion, maximoPositivo, minimoNegativo)
-    elif tipoOperacion == 2:
-        return generaExpresionesTipo3(solucion, maximoPositivo, minimoNegativo)
-    elif tipoOperacion == 3:
-        return generaExpresionesTipo4(solucion, maximoPositivo, minimoNegativo)
-    elif tipoOperacion == 4:
-        return generaExpresionesTipo5(solucion, maximoPositivo, minimoNegativo)
-    elif tipoOperacion == 5:
-        return generaExpresionesTipo6(solucion, maximoPositivo, minimoNegativo)    
-    elif tipoOperacion == 6:
-        return generaExpresionesTipo7(solucion, maximoPositivo, minimoNegativo)    
-    elif tipoOperacion == 7:
-        return generaExpresionesTipo8(solucion, maximoPositivo, minimoNegativo)    
-    elif tipoOperacion == 8:
-        return generaExpresionesTipo9(solucion, maximoPositivo, minimoNegativo)    
-    elif tipoOperacion == 9:
-        return generaExpresionesTipo10(solucion, maximoPositivo, minimoNegativo)    
-    elif tipoOperacion == 10:
-        return generaExpresionesTipo11(solucion, maximoPositivo, minimoNegativo)    
-
-    
+numeroTiposOperaciones = 11
 #######################################################################################
 # INICIO del código LaTeX específico para esta ficha
 #######################################################################################
@@ -326,14 +300,18 @@ for koko in range(len(elementos)):
     fLaTeX.write(r"	\hline"+"\n")
     fLaTeX.write(r"	\textbf{Expresión algebraica} & \textbf{Valor de las variables} & \textbf{Resultado} & \textbf{Letra} \\"+"\n")
     fLaTeX.write(r"	\hline"+"\n")
-    print(elementos[koko])
+    # Añadimos al archivo fuente LaTeX las operaciones con enteros para el elemento que toque.
+    print(str(koko+1), "de", str(len(elementos)),":", elementos[koko])
+    operacionesDistintas = funcionesBasicas.generaOperacionesDistintas(numeroTiposOperaciones,len(elementos[koko]))
     for papa in range(len(elementos[koko])):
         # Obtenemos el número correspondiente a cada letra del primer elemento,
         # y generamos una operación que da ese número como resultado.
         if codigoAlfabetico.get(elementos[koko][papa]) is not None:
-            kuka = random.randrange(0,numeroExpresionesDistintas)
-            salidas = convierteLetraAExpresion(kuka,codigoAlfabetico.get(elementos[koko][papa]),maximoPositivo,minimoNegativo)
-            fLaTeX.write(r"" + salidas[0] + r" & " + salidas[1] + r" & &  \\\hline"+"\n")
+            #----------------------------------------------
+            exec("cadenas = generaOperacionesTipo" + str(operacionesDistintas[papa]+1) + "(codigoAlfabetico.get(elementos[koko][papa]), maximoPositivo, minimoNegativo)")
+            pot = 2*random.randrange(0,int(len(cadenas)/2))
+            fLaTeX.write(cadenas[pot]+r" &" + cadenas[pot+1] +r"& & \\\hline"+"\n")            
+            #----------------------------------------------  
     fLaTeX.write(r"\end{tabularx}"+"\n")
     fLaTeX.write(r"\end{footnotesize}"+"\n")
     funcionesBasicas.escribeFinalFichaLaTeX(fLaTeX)

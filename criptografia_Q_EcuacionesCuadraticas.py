@@ -39,8 +39,7 @@ funcionesBasicas.escribePreambuloLaTeX(datos,fLaTeX)
 #######################################################################################
 # Parámetros
 #######################################################################################
-numeroTiposOperaciones = 6
-maximoValor = 10
+maximoPositivo = int(input("Introduce el máximo positivo: "))
 
 #######################################################################################
 # INICIO del código específico para esta ficha
@@ -272,20 +271,7 @@ def escribePolinomioEnLaTeX(coeficientes):
             cadena += str(int(coeficientes[kuku+1]))
     return cadena           
 
-def convierteLetraAOperacion(tipoOperacion, solucion, maximoValor):
-    if tipoOperacion == 0:
-        return generaEcuacionesTipo1(solucion, maximoValor)
-    elif tipoOperacion == 1:
-        return generaEcuacionesTipo2(solucion, maximoValor)
-    elif tipoOperacion == 2:
-        return generaEcuacionesTipo3(solucion, maximoValor)
-    elif tipoOperacion == 3:
-        return generaEcuacionesTipo4(solucion, maximoValor)
-    elif tipoOperacion == 4:
-        return generaEcuacionesTipo5(solucion, maximoValor)
-    elif tipoOperacion == 5:
-        return generaEcuacionesTipo6(solucion, maximoValor)
-
+numeroTiposOperaciones = 6
 #######################################################################################
 # INICIO del código LaTeX específico para esta ficha
 #######################################################################################
@@ -299,18 +285,19 @@ for koko in range(len(elementos)):
     fLaTeX.write(r"	\hline"+"\n")
     fLaTeX.write(r"	\textbf{Ecuación} & \textbf{Solución 1} & \textbf{Solución 2} & \textbf{Producto} & \textbf{Letra} \\"+"\n")
     fLaTeX.write(r"	\hline"+"\n")
-    print(elementos[koko])
+    # Añadimos al archivo fuente LaTeX las operaciones con enteros para el elemento que toque.
+    print(str(koko+1), "de", str(len(elementos)),":", elementos[koko])
+    operacionesDistintas = funcionesBasicas.generaOperacionesDistintas(numeroTiposOperaciones,len(elementos[koko]))
     for papa in range(len(elementos[koko])):
-        # Obtenemos el número correspondiente a cada par de letras del primer elemento,
-        # y generamos una operación que da ese número como resultado.
+        # Obtenemos el número correspondiente a cada par de letras del primer elemento, y generamos una operación que da ese número como resultado.
         if codigoAlfabetico.get(elementos[koko][papa]) is not None:
-            fLaTeX.write(r"	"+convierteLetraAOperacion(random.randrange(0, numeroTiposOperaciones),
-                                             codigoAlfabetico.get(elementos[koko][papa]),
-                                             maximoValor)+r" & & & & \\\hline"+"\n")
+            #----------------------------------------------
+            exec("cadenas = generaEcuacionesTipo" + str(operacionesDistintas[papa]+1) + "(codigoAlfabetico.get(elementos[koko][papa]), maximoPositivo)")
+            fLaTeX.write(cadenas+r" & & & & \\\hline"+"\n")
+            #----------------------------------------------  
         else:
             # Para los espacios en blanco generamos ecuaciones sin solución real.
-            fLaTeX.write(r"	"+generaEcuacionSinSolucion(maximoValor)+r" & & & &  \\\hline"+"\n")
-            
+            fLaTeX.write(generaEcuacionSinSolucion(maximoPositivo)+r" & & & &  \\\hline"+"\n")
     fLaTeX.write(r"\end{tabularx}"+"\n")
     funcionesBasicas.escribeFinalFichaLaTeX(fLaTeX)
 fLaTeX.write(r"\end{document}"+"\n")

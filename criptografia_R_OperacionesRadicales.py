@@ -38,10 +38,9 @@ funcionesBasicas.escribePreambuloLaTeX(datos,fLaTeX)
 #######################################################################################
 # Parámetros
 #######################################################################################
-numeroTiposOperaciones = 6
+maximoPositivo = int(input("Introduce el máximo positivo: "))
 numeroOperacionesDistintas = 5
-maximoPositivo = 10
-radicandosIrreducibles = [2, 3, 5, 6, 7, 10, 11,]
+radicandosIrreducibles = [2, 3, 5, 6, 7, 10, 11]
 
 #######################################################################################
 # INICIO del código específico para esta ficha
@@ -54,7 +53,7 @@ def generaOperacionesTipo1(radicandosIrreducibles, solucion, numeroOperaciones, 
         factor1 = random.randint(1, maximoPositivo)
         factor2 = random.randint(1, maximoPositivo)
         if (factor1**2-factor2) == solucion:
-            textoOperacion = "\sqrt{" + str(radicandoIrreducible1*factor1**4) + "}-\sqrt{" + str(radicandoIrreducible1*factor2**2) + "}"
+            textoOperacion = "$" + "\sqrt{" + str(radicandoIrreducible1*factor1**4) + "}-\sqrt{" + str(radicandoIrreducible1*factor2**2) + "}" + "$"
             listaOperaciones.append(textoOperacion)
             listaOperacionesUnicas = np.unique(listaOperaciones)
             contador = len(listaOperacionesUnicas)
@@ -70,7 +69,7 @@ def generaOperacionesTipo2(radicandosIrreducibles, solucion, numeroOperaciones, 
         factorExterno1 = random.randint(1, maximoPositivo)
         factorExterno2 = random.randint(1, maximoPositivo)
         if (factor1*factorExterno1-factor2*factorExterno2) == solucion:
-            textoOperacion = str(factorExterno1) + "\sqrt{" + str(radicandoIrreducible1*factor1**2) + "}-" + str(factorExterno2) + "\sqrt{" + str(radicandoIrreducible1*factor2**2) + "}"
+            textoOperacion = "$" + str(factorExterno1) + "\sqrt{" + str(radicandoIrreducible1*factor1**2) + "}-" + str(factorExterno2) + "\sqrt{" + str(radicandoIrreducible1*factor2**2) + "}" + "$"
             listaOperaciones.append(textoOperacion)
             listaOperacionesUnicas = np.unique(listaOperaciones)
             contador = len(listaOperacionesUnicas)
@@ -88,7 +87,7 @@ def generaOperacionesTipo3(radicandosIrreducibles, solucion, numeroOperaciones, 
         factorExterno2 = random.randint(1, maximoPositivo)
         factorExterno3 = random.randint(1, maximoPositivo)
         if (factor1*factorExterno1-factor2*factorExterno2+factorExterno3*factor3) == solucion:
-            textoOperacion = str(factorExterno1) + "\sqrt{" + str(radicandoIrreducible1*factor1**2) + "}-" + str(factorExterno2) + "\sqrt{" + str(radicandoIrreducible1*factor2**2) + "}+" + str(factorExterno3) + "\sqrt{" + str(radicandoIrreducible1*factor3**2) + "}"
+            textoOperacion = "$" + str(factorExterno1) + "\sqrt{" + str(radicandoIrreducible1*factor1**2) + "}-" + str(factorExterno2) + "\sqrt{" + str(radicandoIrreducible1*factor2**2) + "}+" + str(factorExterno3) + "\sqrt{" + str(radicandoIrreducible1*factor3**2) + "}" + "$"
             listaOperaciones.append(textoOperacion)
             listaOperacionesUnicas = np.unique(listaOperaciones)
             contador = len(listaOperacionesUnicas)
@@ -108,7 +107,7 @@ def generaOperacionesTipo4(radicandosIrreducibles, solucion, numeroOperaciones, 
         factorExterno3 = random.randint(1, maximoPositivo)
         factorExterno4 = random.randint(1, maximoPositivo)
         if (-factor3*factorExterno3+factor4*factorExterno4) != 0 and (factor1*factorExterno1-factor2*factorExterno2)/(-factor3*factorExterno3+factor4*factorExterno4) == solucion:
-            textoOperacion = "\dfrac{" + str(factorExterno1) + "\sqrt{" + str(radicandoIrreducible1*factor1**2) + "}-" + str(factorExterno2) + "\sqrt{" + str(radicandoIrreducible1*factor2**2) + "}}{-" + str(factorExterno3) + "\sqrt{" + str(radicandoIrreducible1*factor3**2) + "}+" + str(factorExterno4) + "\sqrt{" + str(radicandoIrreducible1*factor4**2) + "}" + "}"
+            textoOperacion = "$" + "\dfrac{" + str(factorExterno1) + "\sqrt{" + str(radicandoIrreducible1*factor1**2) + "}-" + str(factorExterno2) + "\sqrt{" + str(radicandoIrreducible1*factor2**2) + "}}{-" + str(factorExterno3) + "\sqrt{" + str(radicandoIrreducible1*factor3**2) + "}+" + str(factorExterno4) + "\sqrt{" + str(radicandoIrreducible1*factor4**2) + "}" + "}" + "$"
             listaOperaciones.append(textoOperacion)
             listaOperacionesUnicas = np.unique(listaOperaciones)
             contador = len(listaOperacionesUnicas)
@@ -128,7 +127,7 @@ def generaOperacionesTipo5(radicandosIrreducibles, solucion, numeroOperaciones, 
         factorExterno3 = random.randint(1, maximoPositivo)
         factorExterno4 = random.randint(1, maximoPositivo)        
         if (-factor3*factorExterno3+factor4) != 0 and (factor1*factorExterno1-factor2)/(-factor3*factorExterno3+factor4) == solucion:
-            textoOperacion = "\dfrac{" + str(factorExterno1) + "\sqrt{" + str(radicandoIrreducible1*factor1**2) + "}-\sqrt{" + str(radicandoIrreducible1*factor2**2) + "}}{-" + str(factorExterno3) + "\sqrt{" + str(radicandoIrreducible1*factor3**2) + "}+\sqrt{" + str(radicandoIrreducible1*factor4**2) + "}" + "}"
+            textoOperacion = "$" + "\dfrac{" + str(factorExterno1) + "\sqrt{" + str(radicandoIrreducible1*factor1**2) + "}-\sqrt{" + str(radicandoIrreducible1*factor2**2) + "}}{-" + str(factorExterno3) + "\sqrt{" + str(radicandoIrreducible1*factor3**2) + "}+\sqrt{" + str(radicandoIrreducible1*factor4**2) + "}" + "}" + "$"
             listaOperaciones.append(textoOperacion)
             listaOperacionesUnicas = np.unique(listaOperaciones)
             contador = len(listaOperacionesUnicas)
@@ -148,29 +147,14 @@ def generaOperacionesTipo6(radicandosIrreducibles, solucion, numeroOperaciones, 
         factorExterno3 = random.randint(1, maximoPositivo)
         factorExterno4 = random.randint(1, maximoPositivo)        
         if (-factor3*factorExterno3+factor4) != 0 and (factor1*factorExterno1-factor2)/(-factor3*factorExterno3+factor4) == solucion:
-            textoOperacion = "\dfrac{" + str(factorExterno1) + "\sqrt[3]{" + str(radicandoIrreducible1*factor1**3) + "}-\sqrt[3]{" + str(radicandoIrreducible1*factor2**3) + "}}{-" + str(factorExterno3) + "\sqrt[3]{" + str(radicandoIrreducible1*factor3**3) + "}+\sqrt[3]{" + str(radicandoIrreducible1*factor4**3) + "}" + "}"
+            textoOperacion = "$" + "\dfrac{" + str(factorExterno1) + "\sqrt[3]{" + str(radicandoIrreducible1*factor1**3) + "}-\sqrt[3]{" + str(radicandoIrreducible1*factor2**3) + "}}{-" + str(factorExterno3) + "\sqrt[3]{" + str(radicandoIrreducible1*factor3**3) + "}+\sqrt[3]{" + str(radicandoIrreducible1*factor4**3) + "}" + "}" + "$"
             listaOperaciones.append(textoOperacion)
             listaOperacionesUnicas = np.unique(listaOperaciones)
             contador = len(listaOperacionesUnicas)
     return listaOperacionesUnicas    
 
-def convierteLetraAOperacion(radicandosIrreducibles, tipoOperacion, numeroOperacionesDistintas, solucion, maximoPositivo):
-    if tipoOperacion == 0:
-        return generaOperacionesTipo1(radicandosIrreducibles, solucion, numeroOperacionesDistintas, maximoPositivo)
-    elif tipoOperacion == 1:
-        return generaOperacionesTipo2(radicandosIrreducibles, solucion, numeroOperacionesDistintas, maximoPositivo)
-    elif tipoOperacion == 2:
-        return generaOperacionesTipo3(radicandosIrreducibles, solucion, numeroOperacionesDistintas, maximoPositivo)
-    elif tipoOperacion == 3:
-        return generaOperacionesTipo4(radicandosIrreducibles, solucion, numeroOperacionesDistintas, maximoPositivo)
-    elif tipoOperacion == 4:
-        return generaOperacionesTipo5(radicandosIrreducibles, solucion, numeroOperacionesDistintas, maximoPositivo)
-    elif tipoOperacion == 5:
-        return generaOperacionesTipo6(radicandosIrreducibles, solucion, numeroOperacionesDistintas, maximoPositivo)
-    elif tipoOperacion == 6:
-        return generaOperacionesTipo7(radicandosIrreducibles, solucion, numeroOperacionesDistintas, maximoPositivo)
 
-
+numeroTiposOperaciones = 6
 #######################################################################################
 # INICIO del código LaTeX específico para esta ficha
 #######################################################################################
@@ -189,13 +173,14 @@ for koko in range(len(elementos)):
     print(str(koko+1), "de", str(len(elementos)),":", elementos[koko])
     operacionesDistintas = funcionesBasicas.generaOperacionesDistintas(numeroTiposOperaciones,len(elementos[koko]))
     for papa in range(len(elementos[koko])):
-        #print(elementos[koko][papa])
-        # Obtenemos el número correspondiente a cada letra del primer elemento,
-        # y generamos unas cuantas operaciones que dan ese número como resultado.
-        # De ellas nos quedamos con la primera. De esa forma, letras iguales tendrán
-        # probablemente operaciones diferentes.
+        # Obtenemos el número correspondiente a cada letra del primer elemento, y generamos unas cuantas operaciones que dan ese número como resultado.
+        # De ellas nos quedamos con la primera. De esa forma, letras iguales tendrán probablemente operaciones diferentes.
         if codigoAlfabetico.get(elementos[koko][papa]) is not None:
-            fLaTeX.write(r" $"+convierteLetraAOperacion(radicandosIrreducibles, operacionesDistintas[papa], numeroOperacionesDistintas,codigoAlfabetico.get(elementos[koko][papa]),maximoPositivo)[0]+r"$ & & \\\hline"+"\n")
+            #----------------------------------------------
+            exec("cadenas = generaOperacionesTipo" + str(operacionesDistintas[papa]+1) + "(radicandosIrreducibles, codigoAlfabetico.get(elementos[koko][papa]), numeroOperacionesDistintas, maximoPositivo)")
+            pot = 2*random.randrange(0,int(len(cadenas)/2))
+            fLaTeX.write(cadenas[pot]+r" & & \\\hline"+"\n")
+            #----------------------------------------------               
     fLaTeX.write(r"\end{tabularx}"+"\n")
     funcionesBasicas.escribeFinalFichaLaTeX(fLaTeX)
 fLaTeX.write(r"\end{document}"+"\n")

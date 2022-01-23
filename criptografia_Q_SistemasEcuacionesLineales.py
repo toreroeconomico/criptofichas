@@ -39,9 +39,8 @@ funcionesBasicas.escribePreambuloLaTeX(datos,fLaTeX)
 #######################################################################################
 # Parámetros
 #######################################################################################
-numeroTiposOperaciones = 3
 numeroOperacionesDistintas = 3
-maximoValor = 30
+maximoPositivo = int(input("Introduce el máximo positivo: "))
 
 #######################################################################################
 # INICIO del código específico para esta ficha
@@ -296,30 +295,7 @@ def generaSCDTipo4(solucion, numeroOperacionesDistintas, maximoValor):
                 contador = len(listaOperacionesUnicas)
     return listaOperacionesUnicas
 
-
-def convierteLetraAOperacion(tipoOperacion, solucion, numeroOperacionesDistintas, maximoValor):
-    if tipoOperacion == 0:
-        return generaSCDTipo1(solucion, numeroOperacionesDistintas, maximoValor)
-    elif tipoOperacion == 1:
-        return generaSCDTipo2(solucion, numeroOperacionesDistintas, maximoValor)
-    elif tipoOperacion == 2:
-        return generaSCDTipo3(solucion, numeroOperacionesDistintas, maximoValor)
-    elif tipoOperacion == 3:
-        return generaSCDTipo4(solucion, numeroOperacionesDistintas, maximoValor)
-#    elif tipoOperacion == 4:
-#        return generaSCDTipo5(solucion, numeroOperacionesDistintas, maximoValor)
-#    elif tipoOperacion == 5:
-#        return generaSCDTipo6(solucion, numeroOperacionesDistintas, maximoValor)
-#    # Ahora vienen las de primer grado
-#    elif tipoOperacion == 6:
-#        return generaSCDTipo7(solucion, numeroOperacionesDistintas, maximoValor)
-#    elif tipoOperacion == 7:
-#        return generaSCDTipo8(solucion, numeroOperacionesDistintas, maximoValor)
-#    elif tipoOperacion == 8:
-#        return generaSCDTipo9(solucion, numeroOperacionesDistintas, maximoValor)
-#    elif tipoOperacion == 9:
-#        return generaSCDTipo10(solucion, numeroOperacionesDistintas, maximoValor)
-  
+numeroTiposOperaciones = 3
 #######################################################################################
 # INICIO del código LaTeX específico para esta ficha
 #######################################################################################
@@ -332,23 +308,25 @@ for koko in range(len(elementos)):
     fLaTeX.write(r"\begin{footnotesize}"+"\n")
     fLaTeX.write(r"\noindent\begin{tabularx}{\textwidth}{|X|c|c|c|c|c|}"+"\n")
     fLaTeX.write(r"	\hline"+"\n")
-    fLaTeX.write(
-        r"	\textbf{Sistema} & \textbf{Tipo de sistema} & \textbf{Soluci\'{o}n $x$} & \textbf{Soluci\'{o}n $y$} & \textbf{Producto} & \textbf{Letra} \\"+"\n")
+    fLaTeX.write(r"	\textbf{Sistema} & \textbf{Tipo de sistema} & \textbf{Soluci\'{o}n $x$} & \textbf{Soluci\'{o}n $y$} & \textbf{Producto} & \textbf{Letra} \\"+"\n")
     fLaTeX.write(r"	\hline"+"\n")
-    print(elementos[koko])
+    # Añadimos al archivo fuente LaTeX las operaciones para cada letra de este elemento.
+    print(str(koko+1), "de", str(len(elementos)),":", elementos[koko])
+    operacionesDistintas = funcionesBasicas.generaOperacionesDistintas(numeroTiposOperaciones,len(elementos[koko]))
     for papa in range(len(elementos[koko])):
-        # Obtenemos el número correspondiente a letra del elemento
-        # y generamos una operación que da ese número como resultado.
+        # Obtenemos el número correspondiente a letra del elemento y generamos una operación que da ese número como resultado.
         if codigoAlfabetico.get(elementos[koko][papa]) is not None:
-            fLaTeX.write(r"	" + convierteLetraAOperacion(random.randrange(0, numeroTiposOperaciones),
-                                             codigoAlfabetico.get(elementos[koko][papa]),numeroOperacionesDistintas,
-                                             maximoValor)[random.randrange(0,numeroOperacionesDistintas)] + r" & & & & & \\\hline"+"\n")
+            #----------------------------------------------
+            exec("cadenas = generaSCDTipo" + str(operacionesDistintas[papa]+1) + "(codigoAlfabetico.get(elementos[koko][papa]), numeroOperacionesDistintas, maximoPositivo)")
+            pot = 2*random.randrange(0,len(cadenas)/2)
+            fLaTeX.write(cadenas[pot]+r" & & & & & \\\hline"+"\n")
+            #----------------------------------------------          
         else:
             # Para los espacios en blanco generamos un sistema compatible indeterminado (SCI) o uno incompatible (SI).
             if random.randint(0,1) == 0:
-                fLaTeX.write(r"	" + generaSCI(numeroOperacionesDistintas,maximoValor)[random.randrange(0,numeroOperacionesDistintas)] + r" & & & & &  \\\hline"+"\n")
+                fLaTeX.write(generaSCI(numeroOperacionesDistintas,maximoValor)[0] + r" & & & & &  \\\hline"+"\n")
             else:
-                fLaTeX.write(r"	" + generaSI(numeroOperacionesDistintas,maximoValor)[random.randrange(0,numeroOperacionesDistintas)] + r" & & & & &  \\\hline"+"\n")    
+                fLaTeX.write(generaSI(numeroOperacionesDistintas,maximoValor)[0] + r" & & & & &  \\\hline"+"\n")    
             
     fLaTeX.write(r"\end{tabularx}"+"\n")
     fLaTeX.write(r"\end{footnotesize}"+"\n")
