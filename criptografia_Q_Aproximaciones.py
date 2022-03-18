@@ -98,7 +98,7 @@ def generaOperacionesTipo1(solucion, numeroOperacionesDistintas, metodo, orden, 
         
         if ultimasCifras == solucion:
             # A*B+(C/D)-E*F
-            textoOperacion = ponParentesis(A) + "\cdot{}" + ponParentesis(B) + " + \dfrac{" + ponParentesis(C) + "}{" + ponParentesis(D) + "} - " + ponParentesis(E) + "\cdot{}" + ponParentesis(F)
+            textoOperacion = r"$" + ponParentesis(A) + "\cdot{}" + ponParentesis(B) + " + \dfrac{" + ponParentesis(C) + "}{" + ponParentesis(D) + "} - " + ponParentesis(E) + "\cdot{}" + ponParentesis(F) + r"$"
             listaOperaciones.append(textoOperacion)
             listaOperacionesUnicas = np.unique(listaOperaciones)
             contador = len(listaOperacionesUnicas)
@@ -123,7 +123,7 @@ def generaOperacionesTipo2(solucion, numeroOperacionesDistintas, metodo, orden, 
         
         if ultimasCifras == solucion:
             # A/B-(C/D)+E-F
-            textoOperacion = "\dfrac{" + ponParentesis(A) + "}{" + ponParentesis(B) + "} - \dfrac{" + ponParentesis(C) + "}{" + ponParentesis(D) + "} + " + ponParentesis(E) + "-" + ponParentesis(F)
+            textoOperacion = r"$" + "\dfrac{" + ponParentesis(A) + "}{" + ponParentesis(B) + "} - \dfrac{" + ponParentesis(C) + "}{" + ponParentesis(D) + "} + " + ponParentesis(E) + "-" + ponParentesis(F) + r"$"
             listaOperaciones.append(textoOperacion)
             listaOperacionesUnicas = np.unique(listaOperaciones)
             contador = len(listaOperacionesUnicas)
@@ -148,7 +148,7 @@ def generaOperacionesTipo3(solucion, numeroOperacionesDistintas, metodo, orden, 
         
         if ultimasCifras == solucion:
             # (A/B)*E-(C/D)*F
-            textoOperacion = "\dfrac{" + ponParentesis(A) + "}{" + ponParentesis(B) + "}\cdot{}" + ponParentesis(E) + " - \dfrac{" + ponParentesis(C) + "}{" + ponParentesis(D) + "}\cdot{}" + ponParentesis(F)
+            textoOperacion = r"$" + "\dfrac{" + ponParentesis(A) + "}{" + ponParentesis(B) + "}\cdot{}" + ponParentesis(E) + " - \dfrac{" + ponParentesis(C) + "}{" + ponParentesis(D) + "}\cdot{}" + ponParentesis(F) + r"$"
             listaOperaciones.append(textoOperacion)
             listaOperacionesUnicas = np.unique(listaOperaciones)
             contador = len(listaOperacionesUnicas)
@@ -173,7 +173,7 @@ def generaOperacionesTipo4(solucion, numeroOperacionesDistintas, metodo, orden, 
         
         if ultimasCifras == solucion:
             # E*(A/B-C)+F*(D-G)
-            textoOperacion = ponParentesis(E) + "\cdot{}\Big[\dfrac{" + ponParentesis(A) + "}{" + ponParentesis(B) + "}-" + ponParentesis(C) + "\Big] + " + ponParentesis(F) + "\cdot{}(" + ponParentesis(D) + " - " + ponParentesis(G) + ")"
+            textoOperacion = r"$" + ponParentesis(E) + "\cdot{}\Big[\dfrac{" + ponParentesis(A) + "}{" + ponParentesis(B) + "}-" + ponParentesis(C) + "\Big] + " + ponParentesis(F) + "\cdot{}(" + ponParentesis(D) + " - " + ponParentesis(G) + ")" + r"$"
             listaOperaciones.append(textoOperacion)
             listaOperacionesUnicas = np.unique(listaOperaciones)
             contador = len(listaOperacionesUnicas)
@@ -198,7 +198,7 @@ def generaOperacionesTipo5(solucion, numeroOperacionesDistintas, metodo, orden, 
         
         if ultimasCifras == solucion:
             # (A/B+C)/E-(D-G)/F
-            textoOperacion = "\Big[\dfrac{" + ponParentesis(A) + "}{" + ponParentesis(B) + "}+" + ponParentesis(C) + "\Big]:" + ponParentesis(E) + "-(" + ponParentesis(D) + "-" + ponParentesis(G) + "):" + ponParentesis(F)
+            textoOperacion = r"$" + "\Big[\dfrac{" + ponParentesis(A) + "}{" + ponParentesis(B) + "}+" + ponParentesis(C) + "\Big]:" + ponParentesis(E) + "-(" + ponParentesis(D) + "-" + ponParentesis(G) + "):" + ponParentesis(F) + r"$"
             listaOperaciones.append(textoOperacion)
             listaOperacionesUnicas = np.unique(listaOperaciones)
             contador = len(listaOperacionesUnicas)
@@ -267,7 +267,7 @@ for koko in range(len(elementos)):
                 orden = "dm"
             elif orden == 5:
                 orden = "cm"
-            fLaTeX.write(r" $" + textoOperacion + r"$ & " + orden + r" & " + metodo + r" & & & \\\hline " + "\n")
+            fLaTeX.write(textoOperacion + r" & " + orden + r" & " + metodo + r" & & & \\\hline " + "\n")
     fLaTeX.write(r"\end{tabularx}"+"\n")
     fLaTeX.write(r"\end{small}"+"\n")
     funcionesBasicas.escribeFinalFichaLaTeX(fLaTeX)

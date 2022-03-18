@@ -153,7 +153,7 @@ def creaArchivoLaTeX(datos,archivoElementos,directorioFichas):
 #######################################################################################   
 def escribePreambuloLaTeX(datos,fLaTeX):
     fLaTeX.write(r"\documentclass{exam}"+"\n")
-    fLaTeX.write(r"\usepackage[margin=0.6in,portrait,a4paper]{geometry}"+"\n")
+    fLaTeX.write(r"\usepackage[margin=0.6in,portrait,a4paper,headheight=-5mm,footskip=\dimexpr\headsep+\ht\strutbox\relax]{geometry}"+"\n")
     fLaTeX.write(r"\renewcommand{\familydefault}{\sfdefault}"+"\n")
     fLaTeX.write(r"\usepackage[scaled=1]{helvet}"+"\n")
     fLaTeX.write(r"\usepackage[helvet]{sfmath}"+"\n")
@@ -168,12 +168,12 @@ def escribePreambuloLaTeX(datos,fLaTeX):
     fLaTeX.write(r"\usepackage{tabularx}"+"\n")
     fLaTeX.write(r"\usepackage[normalem]{ulem}"+"\n")
     fLaTeX.write(r""+"\n")
-    fLaTeX.write(r"\linespread{1.5}"+"\n")
+    fLaTeX.write(r"\linespread{1.2}"+"\n")
     fLaTeX.write(r"\pagestyle{headandfoot}"+"\n")
-    fLaTeX.write(r"\footskip -40pt"+"\n")
+    #fLaTeX.write(r"\footskip 0pt"+"\n")
     fLaTeX.write(r""+"\n")
-    fLaTeX.write(r"\firstpagefooter{}{}{\includegraphics[width=0.25cm]{logoTwitterGris}\textcolor{lightgray}{\texttt{@toreroeconomico}}}"+"\n")
-    fLaTeX.write(r"\runningfooter{}{}{\includegraphics[width=0.25cm]{logoTwitterGris}\textcolor{lightgray}{\texttt{@toreroeconomico}}}"+"\n")
+    fLaTeX.write(r"\firstpagefooter{}{}{\includegraphics[width=0.25cm]{logoTwitterGris}\small\textcolor{lightgray}{\textbf{@toreroeconomico}}}"+"\n")
+    fLaTeX.write(r"\runningfooter{}{}{\includegraphics[width=0.25cm]{logoTwitterGris}\small\textcolor{lightgray}{\textbf{@toreroeconomico}}}"+"\n")
     fLaTeX.write(r"\firstpageheader{\textbf{\textcolor{darkgray}{\large " + datos["Centro"] + r"}}}{}{\textbf{\textcolor{darkgray}{\large Departamento de Matemáticas}}}"+"\n")
     fLaTeX.write(r"\runningheader{\textbf{\textcolor{darkgray}{\large " + datos["Centro"] + r"}}}{}{\textbf{\textcolor{darkgray}{\large Departamento de Matemáticas}}}"+"\n")
     fLaTeX.write(r""+"\n")
@@ -207,7 +207,7 @@ def escribeInicioFichaLaTeX(datos,tema,fLaTeX):
     fLaTeX.write(r"\end{center}"+"\n")
     fLaTeX.write(r""+"\n")
     fLaTeX.write(r"En esta ficha se ha encriptado " + tema + r" usando un cifrado de sustituci\'{o}n. Cada letra ha sido sustituida por un n\'{u}mero entero, de acuerdo con la siguiente tabla:"+"\n")
-    fLaTeX.write(r"\vspace{-1.0\baselineskip}"+"\n")
+    fLaTeX.write(r"\vspace{-1.1\baselineskip}"+"\n")
     fLaTeX.write(r""+"\n")
     fLaTeX.write(r"\renewcommand{\arraystretch}{1}"+"\n")
     fLaTeX.write(r"\begin{center}"+"\n")
@@ -222,7 +222,7 @@ def escribeInicioFichaLaTeX(datos,tema,fLaTeX):
     fLaTeX.write(r"	\end{scriptsize}"+"\n")
     fLaTeX.write(r"\end{center}"+"\n")
     fLaTeX.write(r""+"\n")
-    fLaTeX.write(r"\vspace{0.25\baselineskip}"+"\n")
+    fLaTeX.write(r"\vspace{0.15\baselineskip}"+"\n")
     
 #######################################################################################       
 def escribeFinalFichaLaTeX(fLaTeX):
